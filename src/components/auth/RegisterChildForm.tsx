@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -8,51 +9,52 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
 import AuthService, { SignupRequest } from '@/services/AuthService';
-import axios from 'axios';
+import AccountService, { ParentAccount } from '@/services/AccountService';
 
 interface RegisterChildFormInputs extends SignupRequest {
   confirmPassword: string;
 }
 
-interface ParentAccountOption {
-  id: number;
-  accountNumber: string;
-  accountName: string;
-}
-
 const RegisterChildForm = () => {
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<RegisterChildFormInputs>();
   const [isLoading, setIsLoading] = useState(false);
-  const [parentAccounts, setParentAccounts] = useState<ParentAccountOption[]>([]);
+  const [parentAccounts, setParentAccounts] = useState<ParentAccount[]>([]);
   const [isLoadingParents, setIsLoadingParents] = useState(true);
-  const [loadError, setLoadError] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
   
   const password = watch('password', '');
 
   useEffect(() => {
-    const fetchParentAccounts = async () => {
-      try {
-        // Call the public endpoint that lists available parent accounts
-        const response = await axios.get('http://localhost:8081/api/accounts/parents/available');
-        if (response.data && Array.isArray(response.data)) {
-          setParentAccounts(response.data);
-          setLoadError(null);
-        } else {
-          throw new Error('Invalid response format');
-        }
-      } catch (error) {
-        console.error('Error fetching parent accounts:', error);
-        setLoadError('Failed to load parent accounts. Please try again later or contact support.');
-        // Don't set fallback mock data in production - show the error instead
-        setParentAccounts([]);
-      } finally {
-        setIsLoadingParents(false);
+    // In a real application, you would have an API endpoint to fetch all parent accounts
+    // For this example, we're just creating some mock data
+    setParentAccounts([
+      { 
+        id: 1, 
+        accountNumber: '1234567890', 
+        accountName: 'John Doe Account', 
+        balance: 1000,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        createdAtIST: new Date().toISOString(),
+        updatedAtIST: new Date().toISOString(),
+        systemCreated: 'Web Portal',
+        systemUpdated: 'Web Portal'
+      },
+      { 
+        id: 2, 
+        accountNumber: '0987654321', 
+        accountName: 'Jane Smith Account', 
+        balance: 2000,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        createdAtIST: new Date().toISOString(),
+        updatedAtIST: new Date().toISOString(),
+        systemCreated: 'Web Portal',
+        systemUpdated: 'Web Portal'
       }
-    };
-
-    fetchParentAccounts();
+    ]);
+    setIsLoadingParents(false);
   }, []);
 
   const onSubmit = async (data: RegisterChildFormInputs) => {
@@ -142,24 +144,19 @@ const RegisterChildForm = () => {
           
           <div className="space-y-2">
             <Label htmlFor="parentAccountId">Parent Account</Label>
-            {loadError && (
-              <p className="text-sm text-amber-600 mb-2">{loadError}</p>
-            )}
-            <Select onValueChange={handleParentSelect} disabled={isLoadingParents}>
+            <Select onValueChange={handleParentSelect}>
               <SelectTrigger>
-                <SelectValue placeholder={isLoadingParents ? "Loading accounts..." : "Select a parent account"} />
+                <SelectValue placeholder="Select a parent account" />
               </SelectTrigger>
               <SelectContent>
                 {isLoadingParents ? (
-                  <SelectItem value="loading" disabled>Loading parent accounts...</SelectItem>
-                ) : parentAccounts.length > 0 ? (
+                  <SelectItem value="loading" disabled>Loading...</SelectItem>
+                ) : (
                   parentAccounts.map(account => (
                     <SelectItem key={account.id} value={account.id.toString()}>
                       {account.accountName} ({account.accountNumber})
                     </SelectItem>
                   ))
-                ) : (
-                  <SelectItem value="none" disabled>No parent accounts available</SelectItem>
                 )}
               </SelectContent>
             </Select>

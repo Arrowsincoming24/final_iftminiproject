@@ -1,3 +1,4 @@
+
 package com.familynest.accountsportal.controller;
 
 import com.familynest.accountsportal.model.ChildAccount;
@@ -100,22 +101,6 @@ public class AccountController {
         }
         
         return ResponseEntity.ok(mapChildAccount(childAccount));
-    }
-    
-    @GetMapping("/parents/available")
-    public ResponseEntity<?> getAvailableParentAccounts() {
-        List<ParentAccount> parentAccounts = accountService.getAllParentAccounts();
-        List<Map<String, Object>> result = parentAccounts.stream()
-                .map(account -> {
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("id", account.getId());
-                    map.put("accountNumber", account.getAccountNumber());
-                    map.put("accountName", account.getAccountName());
-                    return map;
-                })
-                .collect(Collectors.toList());
-        
-        return ResponseEntity.ok(result);
     }
     
     private Map<String, Object> mapParentAccount(ParentAccount account) {

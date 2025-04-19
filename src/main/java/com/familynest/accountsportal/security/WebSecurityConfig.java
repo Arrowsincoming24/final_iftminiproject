@@ -1,3 +1,4 @@
+
 package com.familynest.accountsportal.security;
 
 import com.familynest.accountsportal.security.jwt.AuthEntryPointJwt;
@@ -84,7 +85,6 @@ public class WebSecurityConfig {
                 auth.requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers("/api/test/**").permitAll()
                     .requestMatchers("/h2-console/**").permitAll()
-                    .requestMatchers("/api/accounts/parents/available").permitAll()
                     .anyRequest().authenticated()
             );
         
