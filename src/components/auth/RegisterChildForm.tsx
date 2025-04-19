@@ -34,27 +34,19 @@ const RegisterChildForm = () => {
   useEffect(() => {
     const fetchParentAccounts = async () => {
       try {
-        // In a production environment, we would have a dedicated API endpoint for this
-        // For this demo, we're making a direct call to the parent accounts endpoint
+        // Call the public endpoint that lists available parent accounts
         const response = await axios.get('http://localhost:8081/api/accounts/parents/available');
-        setParentAccounts(response.data);
-        setLoadError(null);
+        if (response.data && Array.isArray(response.data)) {
+          setParentAccounts(response.data);
+          setLoadError(null);
+        } else {
+          throw new Error('Invalid response format');
+        }
       } catch (error) {
         console.error('Error fetching parent accounts:', error);
-        setLoadError('Failed to load parent accounts. Please try again later.');
-        // Fallback to mock data for demonstration
-        setParentAccounts([
-          { 
-            id: 1, 
-            accountNumber: '1234567890', 
-            accountName: 'Demo Parent Account 1'
-          },
-          { 
-            id: 2, 
-            accountNumber: '0987654321', 
-            accountName: 'Demo Parent Account 2'
-          }
-        ]);
+        setLoadError('Failed to load parent accounts. Please try again later or contact support.');
+        // Don't set fallback mock data in production - show the error instead
+        setParentAccounts([]);
       } finally {
         setIsLoadingParents(false);
       }
