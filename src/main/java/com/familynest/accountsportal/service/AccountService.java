@@ -1,3 +1,4 @@
+
 package com.familynest.accountsportal.service;
 
 import com.familynest.accountsportal.model.ChildAccount;
@@ -78,10 +79,6 @@ public class AccountService {
     public ChildAccount getChildAccountById(Long id) {
         return childAccountRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Child account not found"));
-    }
-
-    public List<ParentAccount> getAllParentAccounts() {
-        return parentAccountRepository.findAll();
     }
 
     private String generateAccountNumber() {
