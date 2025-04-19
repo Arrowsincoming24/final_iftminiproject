@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+// @ts-ignore
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -18,6 +20,14 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				heading: ['Outfit', 'sans-serif'],
+				body: ['Plus Jakarta Sans', 'sans-serif']
+			},
+			boxShadow: {
+				'card': '0 10px 30px -10px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.1)',
+				'button': '0 4px 14px rgba(0, 0, 0, 0.1)',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -92,5 +102,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;

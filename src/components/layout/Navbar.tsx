@@ -28,7 +28,7 @@ const Navbar = () => {
             className="text-xl font-bold cursor-pointer" 
             onClick={() => navigate('/')}
           >
-            Family Nest
+            Parentlink
           </h1>
           <span className="text-sm bg-blue-700 px-2 py-0.5 rounded-md">Accounts Portal</span>
         </div>
@@ -49,7 +49,7 @@ const Navbar = () => {
                 Dashboard
               </Button>
               <Button 
-                variant="outline" 
+                variant="secondary" 
                 size="sm" 
                 onClick={handleLogout}
               >
@@ -66,7 +66,7 @@ const Navbar = () => {
                 Login
               </Button>
               <Button 
-                variant="outline" 
+                variant="secondary" 
                 size="sm" 
                 onClick={() => navigate('/register/parent')}
               >

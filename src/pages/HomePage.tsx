@@ -22,136 +22,143 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-        <div className="container mx-auto px-4 py-16">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Family Nest Accounts Portal</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-teal-50 to-white">
+        <div className="container mx-auto px-4 py-20">
+          {/* Hero Section */}
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Family Nest Accounts Portal
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light">
               A secure platform for managing family finances with parent and child accounts
             </p>
             {!isAuthenticated && (
-              <div className="mt-8 flex flex-col md:flex-row gap-4 justify-center">
-                <Button size="lg" onClick={handleGetStarted} className="bg-blue-600 hover:bg-blue-700">
+              <div className="mt-10 flex flex-col md:flex-row gap-5 justify-center">
+                <Button size="lg" onClick={handleGetStarted} className="px-8 py-6 text-base">
                   Get Started
                 </Button>
-                <Button size="lg" variant="outline" onClick={() => navigate('/login')}>
+                <Button size="lg" variant="outline" onClick={() => navigate('/login')} className="px-8 py-6 text-base">
                   Login
                 </Button>
               </div>
             )}
             {isAuthenticated && (
-              <div className="mt-8">
-                <Button size="lg" onClick={handleGetStarted}>
+              <div className="mt-10">
+                <Button size="lg" onClick={handleGetStarted} className="px-8 py-6 text-base">
                   Go to Dashboard
                 </Button>
               </div>
             )}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <Card className="border-blue-200 shadow-lg">
-              <CardHeader className="bg-blue-50">
-                <CardTitle className="text-blue-700">Parent Accounts</CardTitle>
+          {/* Cards Section */}
+          <div className="grid md:grid-cols-2 gap-10 mb-20">
+            <Card className="overflow-hidden border-0">
+              <div className="h-2 bg-gradient-to-r from-primary to-accent"></div>
+              <CardHeader className="pt-8">
+                <CardTitle className="text-2xl text-primary">Parent Accounts</CardTitle>
                 <CardDescription>Primary family account management</CardDescription>
               </CardHeader>
-              <CardContent className="pt-6">
-                <ul className="space-y-3 text-gray-700">
+              <CardContent className="pt-4">
+                <ul className="space-y-4 text-gray-700">
                   <li className="flex items-start">
-                    <svg className="h-6 w-6 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Create and manage a primary financial account</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="h-6 w-6 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Link and monitor multiple child accounts</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="h-6 w-6 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>View both parent and linked child account details</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="h-6 w-6 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Comprehensive financial overview for the whole family</span>
                   </li>
                 </ul>
               </CardContent>
-              <CardFooter className="bg-blue-50 flex justify-center py-4">
+              <CardFooter className="flex justify-center py-6">
                 {!isAuthenticated && (
-                  <Button onClick={() => navigate('/register/parent')}>Register as Parent</Button>
+                  <Button onClick={() => navigate('/register/parent')} size="lg">Register as Parent</Button>
                 )}
               </CardFooter>
             </Card>
 
-            <Card className="border-green-200 shadow-lg">
-              <CardHeader className="bg-green-50">
-                <CardTitle className="text-green-700">Child Accounts</CardTitle>
+            <Card className="overflow-hidden border-0">
+              <div className="h-2 bg-gradient-to-r from-accent to-accent/70"></div>
+              <CardHeader className="pt-8">
+                <CardTitle className="text-2xl text-accent">Child Accounts</CardTitle>
                 <CardDescription>Linked dependent accounts</CardDescription>
               </CardHeader>
-              <CardContent className="pt-6">
-                <ul className="space-y-3 text-gray-700">
+              <CardContent className="pt-4">
+                <ul className="space-y-4 text-gray-700">
                   <li className="flex items-start">
-                    <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-accent mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Personal account linked to a parent account</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-accent mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>View only your own account information</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-accent mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Secure and separate access from parent account</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-6 w-6 text-accent mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Track your individual balance and account activity</span>
                   </li>
                 </ul>
               </CardContent>
-              <CardFooter className="bg-green-50 flex justify-center py-4">
+              <CardFooter className="flex justify-center py-6">
                 {!isAuthenticated && (
-                  <Button onClick={() => navigate('/register/child')} variant="outline">Register as Child</Button>
+                  <Button onClick={() => navigate('/register/child')} variant="outline" size="lg">Register as Child</Button>
                 )}
               </CardFooter>
             </Card>
           </div>
 
-          <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md border border-gray-200">
-            <h2 className="text-2xl font-bold mb-4 text-gray-900">How It Works</h2>
-            <div className="space-y-6">
+          {/* How It Works Section */}
+          <div className="max-w-4xl mx-auto bg-white p-10 rounded-3xl shadow-card">
+            <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">How It Works</h2>
+            <div className="space-y-8">
               <div className="flex items-start">
-                <div className="bg-blue-100 text-blue-700 rounded-full h-8 w-8 flex items-center justify-center font-bold mr-4 shrink-0">1</div>
+                <div className="bg-gradient-to-r from-primary to-accent text-white rounded-full h-12 w-12 flex items-center justify-center font-bold mr-5 shrink-0">1</div>
                 <div>
-                  <h3 className="text-lg font-medium mb-1">Create a Parent Account</h3>
-                  <p className="text-gray-600">Register as a parent to create the main account for your family.</p>
+                  <h3 className="text-xl font-medium mb-2">Create a Parent Account</h3>
+                  <p className="text-gray-600 text-lg">Register as a parent to create the main account for your family.</p>
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="bg-blue-100 text-blue-700 rounded-full h-8 w-8 flex items-center justify-center font-bold mr-4 shrink-0">2</div>
+                <div className="bg-gradient-to-r from-primary to-accent text-white rounded-full h-12 w-12 flex items-center justify-center font-bold mr-5 shrink-0">2</div>
                 <div>
-                  <h3 className="text-lg font-medium mb-1">Create Child Accounts</h3>
-                  <p className="text-gray-600">Register child accounts and link them to your parent account.</p>
+                  <h3 className="text-xl font-medium mb-2">Create Child Accounts</h3>
+                  <p className="text-gray-600 text-lg">Register child accounts and link them to your parent account.</p>
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="bg-blue-100 text-blue-700 rounded-full h-8 w-8 flex items-center justify-center font-bold mr-4 shrink-0">3</div>
+                <div className="bg-gradient-to-r from-primary to-accent text-white rounded-full h-12 w-12 flex items-center justify-center font-bold mr-5 shrink-0">3</div>
                 <div>
-                  <h3 className="text-lg font-medium mb-1">Manage Family Finances</h3>
-                  <p className="text-gray-600">As a parent, view and manage all accounts. Children can access only their own accounts.</p>
+                  <h3 className="text-xl font-medium mb-2">Manage Family Finances</h3>
+                  <p className="text-gray-600 text-lg">As a parent, view and manage all accounts. Children can access only their own accounts.</p>
                 </div>
               </div>
             </div>

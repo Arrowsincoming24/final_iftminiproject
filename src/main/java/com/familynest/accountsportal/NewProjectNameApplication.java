@@ -1,4 +1,3 @@
-
 package com.familynest.accountsportal;
 
 import org.springframework.boot.SpringApplication;
@@ -7,9 +6,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class FamilyNestApplication {
+public class NewProjectNameApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FamilyNestApplication.class, args);
+        SpringApplication.run(NewProjectNameApplication.class, args);
     }
 }
